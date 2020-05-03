@@ -1,6 +1,6 @@
 # Sheep It - Sample Weather Gateway
 
-This is a minimalistic Node.js app to test Sheep It deployments. The app's purpose is to provide information about weather in Katowice. Depending on the the configuration, the app will either get this information from [OpenWeather](https://openweathermap.org/) or return a static, mocked value.
+This is a minimalistic Node.js app to test Sheep It deployments. The app's purpose is to provide information about weather in Katowice. Depending on the the configuration, the app will either get this information from [Weather API](https://www.weatherapi.com/) or return a static, mocked value.
 
 Image is available on [Docker Hub](https://hub.docker.com/r/sheepit/sheepit-sample-weather-gateway).
 
@@ -12,7 +12,23 @@ curl http://localhost:8081/cities/katowice/weather
 # {"description": "sunny, but not quite"}
 ```
 
-todo: configuring the API and mocked value
+Changing the mock value:
+
+``` bash
+WEATHER_SOURCE=mock WEATHER_MOCK_DESCRIPTION="rainy" npm start
+curl http://localhost:8081/cities/katowice/weather
+# {"description": "rainy"}
+```
+
+Using actual Weather API:
+
+Register on [Weather API](https://www.weatherapi.com/) to get your API key.
+
+``` bash
+WEATHER_SOURCE=weatherApi WEATHER_WEATHERAPI_KEY=<your api key> npm start
+curl http://localhost:8081/cities/katowice/weather
+# {"description": <actual weather>}
+```
 
 Building a Docker image:
 
