@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sheepit-sample-weather-gateway
+  labels:
+    app: sheepit-sample-weather-gateway
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sheepit-sample-weather-gateway
+  template:
+    metadata:
+      labels:
+        app: sheepit-sample-weather-gateway
+    spec:
+      containers:
+        - name: sheepit-sample-weather-gateway
+          image: sheepit/sheepit-sample-weather-gateway:0.0.1
+          ports:
+            - containerPort: 8081
+          env:
+            - name: WEATHER_MOCK_DESCRIPTION
+              value: "{{WEATHER_MOCK_DESCRIPTION}}"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: sheepit-sample-weather-gateway
+  labels:
+    app: sheepit-sample-weather-gateway
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 8081
+      nodePort: {{WEATHER_PORT}}
+  selector:
+    app: sheepit-sample-weather-gateway
