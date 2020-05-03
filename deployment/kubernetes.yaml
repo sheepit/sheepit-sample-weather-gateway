@@ -20,8 +20,12 @@ spec:
           ports:
             - containerPort: 8081
           env:
+            - name: WEATHER_SOURCE
+              value: "{{WEATHER_SOURCE}}"
             - name: WEATHER_MOCK_DESCRIPTION
               value: "{{WEATHER_MOCK_DESCRIPTION}}"
+            - name: WEATHER_WEATHERAPI_KEY
+              value: "{{WEATHER_WEATHERAPI_KEY}}"
 ---
 apiVersion: v1
 kind: Service

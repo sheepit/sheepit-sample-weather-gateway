@@ -40,7 +40,7 @@ Running the image locally:
 
 ``` bash
 docker run -p 8081:8081 -d <your username>/sheepit-sample-weather-gateway:0.0.1
-curl http://localhost:8081
+curl http://localhost:8081/cities/katowice/weather
 # {"description": "sunny, but not quite"}
 ```
 
