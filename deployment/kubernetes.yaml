@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: sheepit-sample-weather-gateway
-          image: sheepit/sheepit-sample-weather-gateway:0.0.1
+          image: repo.treescale.com/ryszalke/sheepit-sample-weather-gateway:0.0.1
           ports:
             - containerPort: 8081
           env:
@@ -26,6 +26,8 @@ spec:
               value: "{{WEATHER_MOCK_DESCRIPTION}}"
             - name: WEATHER_WEATHERAPI_KEY
               value: "{{WEATHER_WEATHERAPI_KEY}}"
+      imagePullSecrets:
+        - name: regcred
 ---
 apiVersion: v1
 kind: Service
